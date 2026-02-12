@@ -38,7 +38,7 @@
 
 This project follows the **Model-View-Controller (MVC)** pattern for better maintainability.
 
-````bash
+```bash
 temanbelajar-api/
 │
 ├── prisma/
@@ -52,23 +52,25 @@ temanbelajar-api/
 ├── .env                   # Environment Variables
 ├── package.json           # Project Dependencies
 └── README.md              # Documentation
+```
 
-**🚀 Getting Started**
+## 🚀 Getting Started
 
 Follow these steps to run the project locally.
 
-1. Prerequisites
-Make sure you have installed:
+1. **Prerequisites\***
+   Make sure you have installed:
 
 Node.js (v16 or higher)
 
 PostgreSQL
 
-2. Clone the Repository
+2. **Clone the Repository**
+
 ```bash
 git clone [https://github.com/your-username/temanbelajar-api.git](https://github.com/your-username/temanbelajar-api.git)
 cd temanbelajar-api
-````
+```
 
 3. **Install Dependencies**
 
