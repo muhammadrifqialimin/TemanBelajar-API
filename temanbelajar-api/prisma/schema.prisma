@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  password String
+  role     String  @default("STUDENT")
+
+  
+  studentBookings Booking[] @relation("StudentBookings")
+  mentorBookings  Booking[] @relation("MentorBookings")
+  mentorSubjects  MentorSubject[]
+}
+
+model Subject {
+  id       Int     @id @default(autoincrement())
+  name     String
+
+
+  mentors  MentorSubject[]
+  bookings Booking[]
+}
+
+model MentorSubject {
+  id        Int  @id @default(autoincrement())
+  mentorId  Int
+  subjectId Int
+  
+  mentor    User    @relation(fields: [mentorId], references: [id])
+  subject   Subject @relation(fields: [subjectId], references: [id])
+}
+
+model Booking {
+  id           Int      @id @default(autoincrement())
+  scheduleTime DateTime
+  status       String   @default("PENDING")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  studentId    Int
+  student      User     @relation("StudentBookings", fields: [studentId], references: [id])
+
+  mentorId     Int
+  mentor       User     @relation("MentorBookings", fields: [mentorId], references: [id])
+
+  subjectId    Int      
+  subject      Subject  @relation(fields: [subjectId], references: [id])
+}
